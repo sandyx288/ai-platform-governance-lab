@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: huge-job
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: huge-job
+  template:
+    metadata:
+      labels:
+        app: huge-job
+    spec:
+      containers:
+      - name: huge-job
+        image: nginx
+        resources:
+          requests:
+            cpu: "10"
+            memory: "10Gi"
+          limits:
+            cpu: "12"
+            memory: "12Gi"

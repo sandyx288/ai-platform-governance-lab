@@ -1,0 +1,15 @@
+team:
+  name: ai-product
+
+quota:
+  requestsCpu: "2"
+  requestsMemory: "4Gi"
+  limitsCpu: "4"
+  limitsMemory: "8Gi"
+  pods: "10"
+
+limitRange:
+  defaultCpu: "1"
+  defaultMemory: "1Gi"
+  defaultRequestCpu: "500m"
+  defaultRequestMemory: "512Mi"
