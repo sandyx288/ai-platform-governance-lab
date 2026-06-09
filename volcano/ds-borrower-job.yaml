@@ -1,0 +1,27 @@
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: ds-borrower
+  namespace: data-science
+spec:
+  schedulerName: volcano
+  queue: data-science-queue
+  minAvailable: 1
+  tasks:
+  - replicas: 2
+    name: worker
+    template:
+      spec:
+        priorityClassName: ai-low-priority
+        restartPolicy: Never
+        containers:
+        - name: cpu-worker
+          image: busybox
+          command: ["sh", "-c", "echo data-science borrowing capacity; sleep 3600"]
+          resources:
+            requests:
+              cpu: "1"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "512Mi"

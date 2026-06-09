@@ -1,0 +1,27 @@
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: research-high
+  namespace: ai-research
+spec:
+  schedulerName: volcano
+  queue: ai-research-queue
+  minAvailable: 2
+  tasks:
+  - replicas: 2
+    name: worker
+    template:
+      spec:
+        priorityClassName: ai-high-priority
+        restartPolicy: Never
+        containers:
+        - name: cpu-worker
+          image: busybox
+          command: ["sh", "-c", "echo ai-research needs reserved capacity; sleep 3600"]
+          resources:
+            requests:
+              cpu: "1"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "512Mi"

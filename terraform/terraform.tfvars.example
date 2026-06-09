@@ -1,0 +1,10 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is gitignored — never commit secrets or subscription IDs.
+
+subscription_id = "00000000-0000-0000-0000-000000000000"
+ssh_public_key  = "ssh-rsa AAAA... your-public-key"
+
+# Optional overrides (defaults shown)
+# location        = "malaysiawest"
+# vm_size         = "Standard_D2as_v4"
+# admin_username  = "azureuser"

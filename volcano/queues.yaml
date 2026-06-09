@@ -1,0 +1,41 @@
+apiVersion: scheduling.volcano.sh/v1beta1
+kind: Queue
+metadata:
+  name: ai-research-queue
+spec:
+  weight: 3
+  reclaimable: true
+  deserved:
+    cpu: "3"
+    memory: "6Gi"
+  capability:
+    cpu: "6"
+    memory: "12Gi"
+---
+apiVersion: scheduling.volcano.sh/v1beta1
+kind: Queue
+metadata:
+  name: ai-product-queue
+spec:
+  weight: 3
+  reclaimable: true
+  deserved:
+    cpu: "3"
+    memory: "6Gi"
+  capability:
+    cpu: "6"
+    memory: "12Gi"
+---
+apiVersion: scheduling.volcano.sh/v1beta1
+kind: Queue
+metadata:
+  name: data-science-queue
+spec:
+  weight: 1
+  reclaimable: true
+  deserved:
+    cpu: "1"
+    memory: "2Gi"
+  capability:
+    cpu: "3"
+    memory: "6Gi"

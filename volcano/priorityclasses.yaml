@@ -1,0 +1,23 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ai-high-priority
+value: 100000
+globalDefault: false
+description: "High priority AI workloads"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ai-medium-priority
+value: 50000
+globalDefault: false
+description: "Medium priority AI workloads"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ai-low-priority
+value: 10000
+globalDefault: false
+description: "Low priority AI workloads"
