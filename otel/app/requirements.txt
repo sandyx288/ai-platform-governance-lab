@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+opentelemetry-distro
+opentelemetry-exporter-otlp
+opentelemetry-instrumentation-fastapi
+langfuse>=2.60,<3

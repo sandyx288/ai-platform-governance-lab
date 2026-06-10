@@ -1,0 +1,31 @@
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:1.57
+    ports:
+      - "16686:16686"
+      - "4318:4318"
+
+  otel-collector:
+    image: otel/opentelemetry-collector:0.103.0
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"
+      - "4319:4318"
+    depends_on:
+      - jaeger
+
+  app:
+    build: ./app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      OTEL_SERVICE_NAME: ai-platform-demo
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_TRACES_EXPORTER: otlp
+    depends_on:
+      - otel-collector
